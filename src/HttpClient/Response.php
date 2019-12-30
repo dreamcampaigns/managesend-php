@@ -74,14 +74,24 @@ class Response
     public function getRateLimits()
     {
         $results = array();
-        $headers = array("X-RateLimit-Limit","X-RateLimit-Remaining","X-RateLimit-Reset");
-        foreach ($headers as $header){
+        $headers = array("X-RateLimit-Limit" => "limit", "X-RateLimit-Remaining" => "remaining", "X-RateLimit-Reset" => "reset");
+        foreach ($headers as $header => $label) {
             $headerKey = strtolower($header);
-            if(!\array_key_exists($headerKey,$this->headers)) continue;
-            $results[$header] = $this->headers[$headerKey];
+            if (!\array_key_exists($headerKey, $this->headers)) {
+                continue;
+            }
+            $results[$label] = $this->headers[$headerKey];
         }
 
         return $results;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isRatelimitExceeded()
+    {
+        return $this->getStatusCode() == 429;
     }
 
     /**
