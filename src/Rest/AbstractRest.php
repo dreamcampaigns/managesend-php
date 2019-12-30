@@ -12,8 +12,10 @@ use Managesend\Exceptions\ConfigurationException;
 use Managesend\Exceptions\RestException;
 use Managesend\HttpClient\Response;
 use Managesend\RestClient;
+use Managesend\Hydrator\ResponseResponse;
+use Managesend\Hydrator\HydratorInterface;
 
-abstract class AbstarctRest
+abstract class AbstractRest
 {
     /**
      * @const int MAX_PAGE_SIZE largest page the Managesend API will return
@@ -34,18 +36,23 @@ abstract class AbstarctRest
     }
 
     /**
-     * @param $url
+     * @param $uri
      *
      * @return string
      */
-    protected function getRestUrl($url,array $params=array())
+    protected function getRestUrl($uri, array $params = array())
     {
-        $url = sprintf("%s%s",$this->restClient->getBaseUrl(),$url);
-        if (strpos($url,"{clientId}") !== false && !$this->restClient->getClientId()) {
-            throw new ConfigurationException("Client id is required for this call");
+        $uri = \sprintf("%s%s", $this->restClient->getBaseUrl(), $uri);
+        if ($params) {
+            $uri = \str_replace(\array_keys($params), \array_values($params), $uri); //rawurlencode
         }
-        $params["{clientId}"] = $this->restClient->getClientId();
-        return str_replace(\array_keys($params),\array_values($params),$url);
+        if (\strpos($uri, "{clientId}") !== FALSE) {
+            if (!$this->restClient->getClientId()) {
+                throw new ConfigurationException("Client id is required for this call");
+            }
+            $uri = \str_replace("{clientId}", $this->restClient->getClientId(), $uri);
+        }
+        return $uri;
     }
 
     /**
@@ -105,6 +112,26 @@ abstract class AbstarctRest
     protected function post($uri, $params = array(), $data = array(), $headers = array(), $timeout = NULL)
     {
         $response = $this->restClient->request("POST",$uri,$params,$data,$headers,null,null,$timeout);
+
+        if ($response->getStatusCode() < 200 || $response->getStatusCode() >= 300) {
+            throw $this->exception($response, 'Unable to create record');
+        }
+
+        return $response;
+    }
+
+    /**
+     * @param $uri
+     * @param array $params
+     * @param array $data
+     * @param array $headers
+     * @param null $timeout
+     *
+     * @return \Managesend\HttpClient\Response
+     */
+    protected function put($uri, $params = array(), $data = array(), $headers = array(), $timeout = NULL)
+    {
+        $response = $this->restClient->request("PUT",$uri,$params,$data,$headers,null,null,$timeout);
 
         if ($response->getStatusCode() < 200 || $response->getStatusCode() >= 300) {
             throw $this->exception($response, 'Unable to create record');

@@ -1,11 +1,12 @@
 <?php
 /*
+ * A client for accessing the Managesend API.
+ *
  * This file is part of the Managesend package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Managesend;
 
 use Managesend\Exceptions\ConfigurationException;
@@ -13,11 +14,6 @@ use Managesend\HttpClient\CurlHttpClient;
 use Managesend\HttpClient\HttpClient;
 use Managesend\Exceptions\ManagesendException;
 
-/**
- * A client for accessing the Managesend API.
- *
- *
- */
 class RestClient
 {
     const VERSION = "1.0.0";
@@ -31,7 +27,21 @@ class RestClient
     protected $clientId;
     protected $httpClient;
     protected $account = NULL;
+    protected $clients = NULL;
     protected $emailCampaign = NULL;
+    protected $smsCampaign = NULL;
+    protected $journey=NULL;
+    protected $list=NULL;
+    protected $webhook = NULL;
+    protected $segment=NULL;
+    protected $subscriber=NULL;
+    protected $template=NULL;
+    protected $transactional=NULL;
+    protected $revenue=NULL;
+    protected $smsKeyword=NULL;
+    protected $form=NULL;
+    protected $siteMessage=NULL;
+    protected $utility=NULL;
 
     /**
      * Initializes the Managesend RestClient
@@ -198,6 +208,19 @@ class RestClient
     }
 
     /**
+     * Access the Managesend Clients
+     *
+     * @return \Managesend\Rest\Clients
+     */
+    public function clients()
+    {
+        if (!$this->clients) {
+            $this->clients = new \Managesend\Rest\Clients($this);
+        }
+        return $this->clients;
+    }
+
+    /**
      * Access the Managesend Email Campaign
      *
      * @return \Managesend\Rest\EmailCampaign
@@ -208,6 +231,175 @@ class RestClient
             $this->emailCampaign = new \Managesend\Rest\EmailCampaign($this);
         }
         return $this->emailCampaign;
+    }
+
+    /**
+     * Access the Managesend Sms Campaign
+     *
+     * @return \Managesend\Rest\SmsCampaign
+     */
+    public function smsCampaign()
+    {
+        if (!$this->smsCampaign) {
+            $this->smsCampaign = new \Managesend\Rest\SmsCampaign($this);
+        }
+        return $this->smsCampaign;
+    }
+
+    /**
+     * Access the Managesend Journey
+     *
+     * @return \Managesend\Rest\Journey
+     */
+    public function journey()
+    {
+        if (!$this->journey) {
+            $this->journey = new \Managesend\Rest\Journey($this);
+        }
+        return $this->journey;
+    }
+
+    /**
+     * Access the Managesend Lists
+     *
+     * @return \Managesend\Rest\Lists
+     */
+    public function lists()
+    {
+        if (!$this->list) {
+            $this->list = new \Managesend\Rest\Lists($this);
+        }
+        return $this->list;
+    }
+
+    /**
+     * Access the Managesend Webhooks
+     *
+     * @return \Managesend\Rest\Webhook
+     */
+    public function webhook()
+    {
+        if (!$this->webhook) {
+            $this->webhook = new \Managesend\Rest\Webhook($this);
+        }
+        return $this->webhook;
+    }
+
+    /**
+     * Access the Managesend Segments
+     *
+     * @return \Managesend\Rest\Segment
+     */
+    public function segment()
+    {
+        if (!$this->segment) {
+            $this->segment = new \Managesend\Rest\Segment($this);
+        }
+        return $this->segment;
+    }
+
+    /**
+     * Access the Managesend Subscribers
+     *
+     * @return \Managesend\Rest\Subscriber
+     */
+    public function subscriber()
+    {
+        if (!$this->subscriber) {
+            $this->subscriber = new \Managesend\Rest\Subscriber($this);
+        }
+        return $this->subscriber;
+    }
+
+    /**
+     * Access the Managesend Templates
+     *
+     * @return \Managesend\Rest\Template
+     */
+    public function template()
+    {
+        if (!$this->template) {
+            $this->template = new \Managesend\Rest\Template($this);
+        }
+        return $this->template;
+    }
+
+    /**
+     * Access the Managesend Transactionals
+     *
+     * @return \Managesend\Rest\Transactional
+     */
+    public function transactional()
+    {
+        if (!$this->transactional) {
+            $this->transactional = new \Managesend\Rest\Transactional($this);
+        }
+        return $this->transactional;
+    }
+
+    /**
+     * Access the Managesend Revenue Target
+     *
+     * @return \Managesend\Rest\Revenue
+     */
+    public function revenue()
+    {
+        if (!$this->revenue) {
+            $this->revenue = new \Managesend\Rest\Revenue($this);
+        }
+        return $this->revenue;
+    }
+
+    /**
+     * Access the Managesend SmsKeywords
+     *
+     * @return \Managesend\Rest\SmsKeyword
+     */
+    public function smsKeyword()
+    {
+        if (!$this->smsKeyword) {
+            $this->smsKeyword = new \Managesend\Rest\SmsKeyword($this);
+        }
+        return $this->smsKeyword;
+    }
+
+    /**
+     * Access the Managesend Forms
+     *
+     * @return \Managesend\Rest\Form
+     */
+    public function form()
+    {
+        if (!$this->form) {
+            $this->form = new \Managesend\Rest\Form($this);
+        }
+        return $this->form;
+    }
+
+    /**
+     * Access the Managesend Targeted Site Messages
+     *
+     * @return \Managesend\Rest\SiteMessage
+     */
+    public function siteMessage()
+    {
+        if (!$this->siteMessage) {
+            $this->siteMessage = new \Managesend\Rest\SiteMessage($this);
+        }
+        return $this->siteMessage;
+    }
+
+    /**
+     * Access the Managesend Miscellaneous Utility
+     *
+     * @return \Managesend\Rest\Utility
+     */
+    public function utility()
+    {
+        if (!$this->utility) {
+            $this->utility = new \Managesend\Rest\Utility($this);
+        }
+        return $this->utility;
     }
 
     /**

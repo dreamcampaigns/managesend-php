@@ -97,7 +97,7 @@ final class CurlHttpClient implements HttpClient
         }
 
         if ($user && $password) {
-            $options[CURLOPT_HTTPHEADER][] = 'Authorization: Bearer ' . \base64_encode("$user:$password");
+            $options[CURLOPT_HTTPHEADER][] = sprintf('Authorization: Basic %s', \base64_encode("$user:$password"));
         }
 
         $body = $this->buildQuery($params);
