@@ -56,7 +56,7 @@ class EmailCampaign extends AbstractRest
     }
 
     /**
-     * @param $campaignId
+     * @param int $campaignId
      * @param array $params = [
      *                      'page' => 'int',
      *                      'page_size' => 'int',

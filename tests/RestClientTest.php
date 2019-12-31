@@ -30,6 +30,15 @@ class RestClientTest extends TestCase
         new RestClient('apikey', NULL, NULL, NULL, array());
     }
 
+    /**
+     * @expectedException \Managesend\Exceptions\ConfigurationException
+     */
+    public function testThrowsWhenClientidMissing()
+    {
+        $restClient = new RestClient('apikey', 'apisecret');
+        $restClient->emailCampaign()->getCampaignSummary(1);
+    }
+
     public function testApikeyPulledFromEnvironment()
     {
         $restClient = new RestClient(NULL, 'apisecret', NULL, NULL, array(
@@ -94,6 +103,13 @@ class RestClientTest extends TestCase
             RestClient::ENV_CLIENT_ID => 'clientId',
         ));
         $this->assertEquals('clientId', $restClient->getClientId());
+    }
+
+    public function testSetClientidPreferredOverParameter()
+    {
+        $restClient = new RestClient('apikey', 'apisecret','clientId');
+        $restClient->setClientId('clientId2');
+        $this->assertEquals('clientId2', $restClient->getClientId());
     }
 
     /**

@@ -1,7 +1,7 @@
 <phpunit bootstrap="./tests/bootstrap.php"
-         convertErrorsToExceptions="false"
-		 convertNoticesToExceptions="false"
-		 convertWarningsToExceptions="false"
+         convertErrorsToExceptions="true"
+		 convertNoticesToExceptions="true"
+		 convertWarningsToExceptions="true"
          colors="true" stopOnFailure="false">
     <testsuites>
         <testsuite name="Managesend Test Suite">

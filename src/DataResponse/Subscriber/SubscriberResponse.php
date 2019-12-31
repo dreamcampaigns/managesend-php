@@ -7,16 +7,16 @@
  */
 namespace Managesend\DataResponse\Subscriber;
 
-use Managesend\Hydrator\ResourceResponseCollection;
+use Managesend\Hydrator\ResourceResponse;
 use Managesend\HttpClient\Response;
 
 /**
- * Class FindSubscribersResponse
+ * Class SubscriberResponse
  * @package Managesend\DataResponse\Subscriber
  *
- * @method  \Managesend\DataClass\Subscriber\Subscriber[] getData()
+ * @method  \Managesend\DataClass\Subscriber\Subscriber getData()
  */
-class FindSubscribersResponse extends ResourceResponseCollection
+class SubscriberResponse extends ResourceResponse
 {
     public function __construct(Response $response)
     {

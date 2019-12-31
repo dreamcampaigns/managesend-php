@@ -7,6 +7,10 @@
  */
 namespace Managesend\Exceptions;
 
+/**
+ * Class ManagesendException
+ * @package Managesend\Exceptions
+ */
 class ManagesendException extends \Exception {
 
 }

@@ -10,9 +10,9 @@ namespace Managesend\Rest;
 class Subscriber extends AbstractRest
 {
     /**
-     * @param $listId
+     * @param int $listId
      * @param array $data = [
-     *  'oldEmail' => 'string'
+     *  'oldEmail' => 'string',
      *  'email' => 'string',
      *  'mobile' => 'string',
      *  'company' => 'string',
@@ -29,14 +29,14 @@ class Subscriber extends AbstractRest
      *  'reoptin' => 'true|false'
      * ]
      *
-     * @return \Managesend\DataResponse\Subscriber\FindSubscribersResponse
+     * @return \Managesend\DataResponse\Subscriber\SubscriberResponse
      * @throws \Managesend\Exceptions\ConfigurationException
      */
     public function addUpdateSubscriber($listId, array $data=array())
     {
         $url = $this->getRestUrl("/subscriber/create/{clientId}/{listId}", array("{listId}"=> $listId));
         $response = $this->post($url,array(),$data);
-        return new \Managesend\DataResponse\Subscriber\FindSubscribersResponse($response);
+        return new \Managesend\DataResponse\Subscriber\SubscriberResponse($response);
     }
 
     /**
