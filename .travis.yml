@@ -21,9 +21,7 @@ sudo: false
 
 # Update composer
 before_script:
-  - travis_retry composer self-update
-  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
+  - composer self-update
+  - composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
 
-script:
-  - ant phpstan
-  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+script: phpunit
