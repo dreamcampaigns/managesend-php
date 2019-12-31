@@ -25,7 +25,7 @@ class RestClient
     const ENV_TOKEN_SECRET = "MANAGESEND_TOKEN_SECRET";
     const ENV_CLIENT_ID = "MANAGESEND_CLIENT_ID";
 
-    protected $baseUrl = "http://api.managesend.local/api/v1";
+    protected $baseUrl = "https://api.managesend.com/api/v1";
     protected $apiTokenKey;
     protected $apiTokenSecret;
     protected $clientId;
