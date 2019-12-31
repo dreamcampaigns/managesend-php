@@ -17,12 +17,12 @@ jobs:
 # lock distro so new future defaults will not break the build
 dist: trusty
 sudo: false
-install: composer update
+#install: composer update
 
 # Update composer
-#before_script:
-#  - composer self-update
-#  - composer update --no-interaction
+before_script:
+  #- composer self-update
+  - composer update --no-interaction
 
 script:
   - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
