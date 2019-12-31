@@ -7,19 +7,23 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Managesend;
 
 use Managesend\Exceptions\ConfigurationException;
 use Managesend\HttpClient\CurlHttpClient;
 use Managesend\HttpClient\HttpClient;
-use Managesend\Exceptions\ManagesendException;
 
+/**
+ * Class RestClient
+ * @package Managesend
+ */
 class RestClient
 {
     const VERSION = "1.0.0";
-    const ENV_TOKEN_KEY = "DREAM_TOKEN_KEY";
-    const ENV_TOKEN_SECRET = "DREAM_TOKEN_SECRET";
-    const ENV_CLIENT_ID = "DREAM_CLIENT_ID";
+    const ENV_TOKEN_KEY = "MANAGESEND_TOKEN_KEY";
+    const ENV_TOKEN_SECRET = "MANAGESEND_TOKEN_SECRET";
+    const ENV_CLIENT_ID = "MANAGESEND_CLIENT_ID";
 
     protected $baseUrl = "http://api.managesend.local/api/v1";
     protected $apiTokenKey;
@@ -30,24 +34,24 @@ class RestClient
     protected $clients = NULL;
     protected $emailCampaign = NULL;
     protected $smsCampaign = NULL;
-    protected $journey=NULL;
-    protected $list=NULL;
+    protected $journey = NULL;
+    protected $list = NULL;
     protected $webhook = NULL;
-    protected $segment=NULL;
-    protected $subscriber=NULL;
-    protected $template=NULL;
-    protected $transactional=NULL;
-    protected $revenue=NULL;
-    protected $smsKeyword=NULL;
-    protected $form=NULL;
-    protected $siteMessage=NULL;
-    protected $utility=NULL;
+    protected $segment = NULL;
+    protected $subscriber = NULL;
+    protected $template = NULL;
+    protected $transactional = NULL;
+    protected $revenue = NULL;
+    protected $smsKeyword = NULL;
+    protected $form = NULL;
+    protected $siteMessage = NULL;
+    protected $utility = NULL;
 
     /**
      * Initializes the Managesend RestClient
      *
-     * @param string $apiTokenKey                              apiTokenKey to authenticate with
-     * @param string $apiTokenSecret                              apiTokenSecret to authenticate with
+     * @param string $apiTokenKey                           apiTokenKey to authenticate with
+     * @param string $apiTokenSecret                        apiTokenSecret to authenticate with
      * @param string $clientId                              Client id to get data for
      * @param \Managesend\HttpClient\HttpClient $httpClient HttpClient, defaults to CurlClient
      * @param mixed[] $environment                          Environment to look for auth details, defaults to $_ENV
@@ -100,14 +104,14 @@ class RestClient
      * Makes a request to the Managesend API using the configured http client
      * Authentication information is automatically added if none is provided
      *
-     * @param string $method    HTTP Method
-     * @param string $uri       Fully qualified url
-     * @param string[] $params  Query string parameters
-     * @param string[] $data    POST body data
-     * @param string[] $headers HTTP Headers
-     * @param string $apiTokenKey  User for Authentication
-     * @param string $apiTokenSecret  apiTokenSecret for Authentication
-     * @param int $timeout      Timeout in seconds
+     * @param string $method         HTTP Method
+     * @param string $uri            Fully qualified url
+     * @param string[] $params       Query string parameters
+     * @param string[] $data         POST body data
+     * @param string[] $headers      HTTP Headers
+     * @param string $apiTokenKey    User for Authentication
+     * @param string $apiTokenSecret apiTokenSecret for Authentication
+     * @param int $timeout           Timeout in seconds
      *
      * @return \Managesend\HttpClient\Response Response from the Managesend API
      */

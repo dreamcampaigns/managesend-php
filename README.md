@@ -1,12 +1,11 @@
 # managesend-php
 
+![Travis (.org)](https://img.shields.io/travis/dreamcampaigns/managesend-php)
 ![Packagist](https://img.shields.io/packagist/l/dreamcampaigns/managesend-php)
 ![Packagist Version](https://img.shields.io/packagist/v/dreamcampaigns/managesend-php)
 ![Packagist](https://img.shields.io/packagist/dt/dreamcampaigns/managesend-php)
 
-## Documentation
-
-The documentation for the DreamCampaigns API can be found [here][apidocs].
+A PHP library implementing the complete functionality of the [DreamCampaigns API](https://www.dreamcampaigns.com/). A complete suites of marketing tools for your business or website.
 
 ## Supported PHP Versions
 
@@ -24,39 +23,51 @@ This library supports the following PHP implementations:
 
 ## Installation
 
-You can install **managesend-php** via composer or by downloading the source.
+You can install **managesend-php** via composer or by [`downloading`](https://github.com/dreamcampaigns/managesend-php/tags) the source.
 
-### Via Composer:
-
+### Via Composer
 **managesend-php** is available on Packagist as the
-[`dreamcampaigns/managesend-php`](https://packagist.org/packages/dreamcampaigns/managesend-php) package:
+[`dreamcampaigns/managesend-php`](https://packagist.org/packages/dreamcampaigns/managesend-php) package.
+
+If you use [Composer](http://getcomposer.org/), you can run the following command from the root of your project to install:
 
 ```
 composer require dreamcampaigns/managesend-php
 ```
+
+### Manual Installation
+If youn't use `Composer` you can simply [download](https://github.com/dreamcampaigns/managesend-php/tags) the library and include it in your project.
+
+After you have installed the library, if you need an autoloader, simply include the managesend-php autoload class, as follows:
+
+```php
+require_once __DIR__ . '/../managesend-php/autoLoader/autoload.php';
+```
+
 ## Authenticating
 
 The DreamCampaigns API uses Basic authentication using an API key and API secret.
 
 ## Quickstart
 
-### Send a Transactional Smart SMS
+### Send a Smart email
 
 ```php
 // Send a Smart email using DreamCampaigns's REST API and PHP
 <?php
 $apiKey = "ACXXXXXX"; // Your Account/Client API Key from https://login.managesend.com/myaccount/apikeys
 $apiSecret = "YXYXYX"; // Your Account/Client API Secret from https://login.managesend.com/myaccount/apikeys
-$clientId = "a5hsgw89dw0001om9yrgfen8ob";
+$clientId = "a6hsgw74dw0001om4yrgfen8";
 
 $restClient = new \Managesend\RestClient\RestClient($apiKey, $apiSecret, $clientId);
-$result = $restClient->transactional()->sendSmartEmail("c5is7tltkk00016k9ype5lg735",array(
+$result = $restClient->transactional()->sendSmartEmail("c5is8tltkk00018k9ype5lg741",array(
     "toEmail"=>"joe@example.com",
     "toName"=>"Joe Smith",
     "data"=>array("promoCode"=>"XYZ"),
 ));
 $newEmail = $result->getData();
 
+//your IDE should auto generate all available getters for each call & results
 print $newEmail->getMessageId();
 print $newEmail->getStatus();
 
@@ -70,58 +81,56 @@ $response = $result->getResponse();
 
 ```
 
-### Send a Transactional Smart SMS
+### Send a Smart SMS
 
 ```php
-// Send a Smart SMS using DreamCampaigns's REST API and PHP
+// Send a Dynamic SMS using DreamCampaigns's REST API and PHP
 <?php
-$sid = "ACXXXXXX"; // Your Account SID from www.twilio.com/console
-$token = "YYYYYY"; // Your Auth Token from www.twilio.com/console
+$apiKey = "ACXXXXXX"; // Your Account API Key from https://login.managesend.com/myaccount/apikeys
+$apiSecret = "YXYXYX"; // Your Account API Secret from https://login.managesend.com/myaccount/apikeys
 
-$client = new Twilio\Rest\Client($sid, $token);
+//if you are using your account level api keys you can set the client ids for each call.
+$restClient = new \Managesend\RestClient\RestClient($apiKey, $apiSecret);
+$result = $restClient->setClientId("c5is8tltkk00018k9ype5lg741")->transactional()->sendDynamicSms("c5is8tltkk00018k9ype5lg741",array(
+    "toNumber"=>"+1234567891",
+    "content"=>"Hello Joe, your password has been reset.",
+));
+$newSms = $result->getData();
 
-// Read TwiML at this URL when a call connects (hold music)
-$call = $client->calls->create(
-  '8881231234', // Call this number
-  '9991231234', // From a valid Twilio number
-  array(
-      'url' => 'https://twimlets.com/holdmusic?Bucket=com.twilio.music.ambient'
-  )
-);
+print $newEmail->getMessageId();
 ```
 
-### Generating TwiML
-
-To control phone calls, your application needs to output .
-
-Use `Twilio\TwiML\(Voice|Messaging|Fax)Response` to easily chain said responses.
+### Getting sent email campaigns
 
 ```php
 <?php
-$response = new Twilio\TwiML\VoiceResponse();
-$response->say('Hello');
-$response->play('https://api.twilio.com/cowbell.mp3', array("loop" => 5));
-print $response;
+$result = $restClient->emailCampaign()->getCampaignsSent();
+$campaigns = $result->getData();
+foreach ($campaigns as $campaign){
+    print $campaign->getSentDate();
+}
 ```
 
-That will output XML that looks like this:
+### Using .env
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<Response>
-    <Say>Hello</Say>
-    <Play loop="5">https://api.twilio.com/cowbell.mp3</Play>
-</Response>
+If you're using .env, you can set your API credentials in your .env.
+
+```dotenv
+MANAGESEND_TOKEN_KEY=ACXXXXXX
+MANAGESEND_TOKEN_SECRET=YXYXYX
+MANAGESEND_CLIENT_ID=c5is8tltkk00018k9ype5lg741
 ```
+```php
+<?php
+$restClient = new \Managesend\RestClient\RestClient();
+$result = $restClient->lists()->getSubscriberList("joe@example.com");
+```
+## Examples
 
-## Docker Image
+Samples for creating or accessing all resources can be found in the examples directory. 
 
-The `Dockerfile` present in this repository and its respective `twilio/twilio-php` Docker image are currently used by Twilio for testing purposes only.
+## Documentation
 
-## Getting help
-
-If you need help installing or using the library, please check the [Twilio Support Help Center](https://support.twilio.com) first, and [file a support ticket](https://twilio.com/help/contact) if you don't find an answer to your question.
-
-If you've instead found a bug in the library or would like new features added, go ahead and open issues or pull requests against this repo!
+For more details you can reffer to the [`DreamCampaigns API documentations`][apidocs]
 
 [apidocs]: https://api.managesend.com/

@@ -5,6 +5,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 namespace Managesend\Rest;
 
 class Lists extends AbstractRest
@@ -35,10 +36,10 @@ class Lists extends AbstractRest
 
     /**
      * @param array $data = [
-     *  'listName' => 'string',
-     *  'unsubscribeType' => 'all',
-     *  'unsubscribePage' => 'string',
-     * ]
+     *                    'listName' => 'string',
+     *                    'unsubscribeType' => 'all',
+     *                    'unsubscribePage' => 'string',
+     *                    ]
      *
      * @return \Managesend\DataResponse\Lists\ListDetailsResponse
      * @throws \Managesend\Exceptions\ConfigurationException
@@ -46,25 +47,25 @@ class Lists extends AbstractRest
     public function createList(array $data)
     {
         $url = $this->getRestUrl("/lists/create/{clientId}");
-        $response = $this->post($url,array(),$data);
+        $response = $this->post($url, array(), $data);
         return new \Managesend\DataResponse\Lists\ListDetailsResponse($response);
     }
 
     /**
      * @param $listId
      * @param array $data = [
-     *  'listName' => 'string',
-     *  'unsubscribeType' => 'all',
-     *  'unsubscribePage' => 'string',
-     * ]
+     *                    'listName' => 'string',
+     *                    'unsubscribeType' => 'all',
+     *                    'unsubscribePage' => 'string',
+     *                    ]
      *
      * @return \Managesend\HttpClient\Response
      * @throws \Managesend\Exceptions\ConfigurationException
      */
-    public function updateList($listId,array $data=array())
+    public function updateList($listId, array $data = array())
     {
-        $url = $this->getRestUrl("/lists/update/{clientId}/{listId}", array("{listId}"=> $listId));
-        $response = $this->patch($url,array(),$data);
+        $url = $this->getRestUrl("/lists/update/{clientId}/{listId}", array("{listId}" => $listId));
+        $response = $this->patch($url, array(), $data);
         return new \Managesend\DataResponse\Lists\ListDetailsResponse($response);
     }
 
@@ -76,7 +77,7 @@ class Lists extends AbstractRest
      */
     public function deleteList($listId)
     {
-        $url = $this->getRestUrl("/lists/delete/{clientId}/{listId}", array("{listId}"=> $listId));
+        $url = $this->getRestUrl("/lists/delete/{clientId}/{listId}", array("{listId}" => $listId));
         return $this->delete($url);
     }
 
@@ -94,22 +95,22 @@ class Lists extends AbstractRest
     }
 
     /**
-     * @param $listId
+     * @param int $listId
      * @param array $data = [
-     *  'type' => 'string',
-     *  'name' => 'string',
-     *  'visible' => 'true|false',
-     *  'required" => 'true|false',
-     *  'options' => 'array'
-     * ]
+     *                    'type' => 'string',
+     *                    'name' => 'string',
+     *                    'visible' => 'true|false',
+     *                    'required" => 'true|false',
+     *                    'options' => 'array',
+     *                    ]
      *
      * @return \Managesend\DataResponse\Lists\CustomfieldResponse
      * @throws \Managesend\Exceptions\ConfigurationException
      */
-    public function createCustomfield($listId,array $data)
+    public function createCustomfield($listId, array $data)
     {
         $url = $this->getRestUrl("/lists/customfield/create/{clientId}/{listId}", array("{listId}" => $listId));
-        $response = $this->post($url,array(),$data);
+        $response = $this->post($url, array(), $data);
         return new \Managesend\DataResponse\Lists\CustomfieldResponse($response);
     }
 
@@ -117,11 +118,11 @@ class Lists extends AbstractRest
      * @param $listId
      * @param $fieldName
      * @param array $data = [
-     *  'name' => 'string',
-     *  'visible' => 'true|false',
-     *  'required" => 'true|false',
-     *  'options' => 'array'
-     * ]
+     *                    'name' => 'string',
+     *                    'visible' => 'true|false',
+     *                    'required" => 'true|false',
+     *                    'options' => 'array'
+     *                    ]
      *
      * @return \Managesend\DataResponse\Lists\CustomfieldResponse
      * @throws \Managesend\Exceptions\ConfigurationException
@@ -155,7 +156,7 @@ class Lists extends AbstractRest
     public function getSubscriberList($subscriber)
     {
         $url = $this->getRestUrl("/lists/subscriber/{clientId}");
-        $response = $this->get($url,array("subscriber"=>$subscriber));
+        $response = $this->get($url, array("subscriber" => $subscriber));
         return new \Managesend\DataResponse\Lists\ListSubscribersResponse($response);
     }
 }

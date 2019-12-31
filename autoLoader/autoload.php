@@ -5,12 +5,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Managesend\Exceptions;
+require_once "Psr4ClassLoader.php";
 
-/**
- * Class ConfigurationException
- * @package Managesend\Exceptions
- */
-class ConfigurationException extends ManagesendException {
+$loader = new Psr4ClassLoader();
+$loader->addPrefixes(array(
+    'Managesend\\' => __DIR__.'/../src',
+));
+$loader->register();
 
-}
+?>

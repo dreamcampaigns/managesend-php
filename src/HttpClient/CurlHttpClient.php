@@ -5,9 +5,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Managesend\HttpClient;
 
+/**
+ * Class CurlHttpClient
+ * @package Managesend\HttpClient
+ */
 final class CurlHttpClient implements HttpClient
 {
     const DEFAULT_TIMEOUT = 60;
@@ -65,9 +68,13 @@ final class CurlHttpClient implements HttpClient
 
             $responseHeaders = array();
             foreach ($this->responseHeaders as $line) {
-                list($key, $value) = \explode(':', $line, 2);
-                if(!$key)continue;
-                $responseHeaders[\trim(\strtolower($key))] = \trim($value);
+                if(strpos($line,":") !== false) {
+                    list($key, $value) = \explode(':', $line, 2);
+                    if (!$key) {
+                        continue;
+                    }
+                    $responseHeaders[\trim(\strtolower($key))] = \trim($value);
+                }
             }
 
             \curl_close($curl);
@@ -84,6 +91,19 @@ final class CurlHttpClient implements HttpClient
         }
     }
 
+    /**
+     * @param $method
+     * @param $url
+     * @param array $params
+     * @param array $data
+     * @param array $headers
+     * @param null $user
+     * @param null $password
+     * @param null $timeout
+     *
+     * @return array
+     * @throws \ErrorException
+     */
     public function options($method, $url, $params = array(), $data = array(), $headers = array(), $user = NULL, $password = NULL, $timeout = NULL)
     {
         $timeout = \is_null($timeout) ? self::DEFAULT_TIMEOUT : $timeout;
@@ -144,6 +164,11 @@ final class CurlHttpClient implements HttpClient
         return $options;
     }
 
+    /**
+     * @param $params
+     *
+     * @return array|string
+     */
     public function buildQuery($params)
     {
         if (\is_string($params)) {
