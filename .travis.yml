@@ -17,9 +17,13 @@ jobs:
 # lock distro so new future defaults will not break the build
 dist: trusty
 sudo: false
+#install: composer update
 
 # Update composer
-before-install:
- - composer self-update
+before_script:
+  - travis_retry composer self-update
+  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
 
-install: composer update
+script:
+  - ant phpstan
+  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
