@@ -43,27 +43,33 @@ The DreamCampaigns API uses Basic authentication using an API key and API secret
 ### Send a Transactional Smart SMS
 
 ```php
-// Send a Smart SMS using DreamCampaigns's REST API and PHP
+// Send a Smart email using DreamCampaigns's REST API and PHP
 <?php
 $apiKey = "ACXXXXXX"; // Your Account/Client API Key from https://login.managesend.com/myaccount/apikeys
 $apiSecret = "YXYXYX"; // Your Account/Client API Secret from https://login.managesend.com/myaccount/apikeys
 $clientId = "a5hsgw89dw0001om9yrgfen8ob";
 
 $restClient = new \Managesend\RestClient\RestClient($apiKey, $apiSecret, $clientId);
-$message = $restClient->messages->create(
-  '8881231234', // Text this number
-  array(
-    'from' => '9991231234', // From a valid Twilio number
-    'body' => 'Hello from Twilio!'
-  )
-);
+$result = $restClient->transactional()->sendSmartEmail("c5is7tltkk00016k9ype5lg735",array(
+    "toEmail"=>"joe@example.com",
+    "toName"=>"Joe Smith",
+    "data"=>array("promoCode"=>"XYZ"),
+));
+$newEmail = $result->getData();
 
-print $message->sid;
+print $newEmail->getMessageId();
+print $newEmail->getStatus();
+
+//or if you preffer arrays
+
+print_r($newEmail->toArray());
+
 ```
 
-### Make a Call
+### Send a Transactional Smart SMS
 
 ```php
+// Send a Smart SMS using DreamCampaigns's REST API and PHP
 <?php
 $sid = "ACXXXXXX"; // Your Account SID from www.twilio.com/console
 $token = "YYYYYY"; // Your Auth Token from www.twilio.com/console

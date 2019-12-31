@@ -1,4 +1,6 @@
-<phpunit bootstrap="./Bootstrap.php" convertNoticesToExceptions="false">
+<phpunit bootstrap="../vendor/autoload.php"
+         convertNoticesToExceptions="false" colors="true"
+         stopOnFailure="false" convertWarningsToExceptions="false">
     <testsuites>
         <testsuite name="Managesend Test Suite">
             <directory>tests/</directory>
