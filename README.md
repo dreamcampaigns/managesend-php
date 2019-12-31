@@ -49,7 +49,7 @@ $apiKey = "ACXXXXXX"; // Your Account/Client API Key from https://login.managese
 $apiSecret = "YXYXYX"; // Your Account/Client API Secret from https://login.managesend.com/myaccount/apikeys
 $clientId = "a5hsgw89dw0001om9yrgfen8ob";
 
-$restClient = new Managesend\RestClient\RestClient($apiKey, $apiSecret, $clientId);
+$restClient = new \Managesend\RestClient\RestClient($apiKey, $apiSecret, $clientId);
 $message = $restClient->messages->create(
   '8881231234', // Text this number
   array(
