@@ -1,0 +1,16 @@
+<phpunit bootstrap="./tests/bootstrap.php"
+         convertErrorsToExceptions="false"
+		 convertNoticesToExceptions="false"
+		 convertWarningsToExceptions="false"
+         colors="true" stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Managesend Test Suite">
+            <directory suffix="Test.php">tests/</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist>
+            <directory>./src/</directory>
+        </whitelist>
+    </filter>
+</phpunit>

@@ -2,8 +2,9 @@
 namespace Managesend\Tests;
 
 use Managesend\RestClient;
+use PHPUnit\Framework\TestCase;
 
-class RestClientTest extends \PHPUnit_Framework_TestCase
+class RestClientTest extends TestCase
 {
     /**
      * @expectedException \Managesend\Exceptions\ConfigurationException
