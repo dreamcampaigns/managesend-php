@@ -22,10 +22,10 @@ sudo: false
 # Update composer
 before_script:
   - composer self-update
-  - composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist
+  - composer install --no-interaction --prefer-dist
 
-script:
-  - ./phpunit RestClientTest
+#script:
+#  - ./phpunit --coverage-clover=coverage.xml
 
 notifications:
   email: false
