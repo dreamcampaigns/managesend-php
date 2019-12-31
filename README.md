@@ -64,6 +64,10 @@ print $newEmail->getStatus();
 
 print_r($newEmail->toArray());
 
+//or you can get the response, where you can get all available data & headers as array
+
+$response = $result->getResponse();
+
 ```
 
 ### Send a Transactional Smart SMS
