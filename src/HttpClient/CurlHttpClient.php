@@ -19,9 +19,16 @@ final class CurlHttpClient implements HttpClient
     public $lastResponse = NULL;
     protected $curlOptions = array();
     protected $responseHeaders=array();
+    protected $timeout = NULL;
 
-    public function __construct()
+    /**
+     * CurlHttpClient constructor.
+     *
+     * @param null $timeout
+     */
+    public function __construct($timeout=NULL)
     {
+        $this->timeout = \is_null($timeout) ? self::DEFAULT_TIMEOUT : $timeout;
         $this->curlOptions = array(
             CURLOPT_HEADER => FALSE,
             CURLOPT_HEADERFUNCTION => array($this, 'curlHeaderCallback'),
@@ -106,7 +113,7 @@ final class CurlHttpClient implements HttpClient
      */
     public function options($method, $url, $params = array(), $data = array(), $headers = array(), $user = NULL, $password = NULL, $timeout = NULL)
     {
-        $timeout = \is_null($timeout) ? self::DEFAULT_TIMEOUT : $timeout;
+        $timeout = \is_null($timeout) ? $this->timeout : $timeout;
         $options = $this->curlOptions;
         $options[CURLOPT_URL] = $url;
         $options[CURLOPT_TIMEOUT] = $timeout;
