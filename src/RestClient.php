@@ -54,12 +54,13 @@ class RestClient
      * @param string $apiTokenSecret                        apiTokenSecret to authenticate with
      * @param string $clientId                              Client id to get data for
      * @param \Managesend\HttpClient\HttpClient $httpClient HttpClient, defaults to CurlClient
+     * @param int|null $timeout   client timeout
      * @param mixed[] $environment                          Environment to look for auth details, defaults to $_ENV
      *
      * @return \Managesend\HttpClient\HttpClient
      * @throws ConfigurationException If valid authentication is not present
      */
-    public function __construct($apiTokenKey = NULL, $apiTokenSecret = NULL, $clientId = NULL, HttpClient $httpClient = NULL, $environment = NULL)
+    public function __construct($apiTokenKey = NULL, $apiTokenSecret = NULL, $clientId = NULL, HttpClient $httpClient = NULL, $timeout = NULL, $environment = NULL)
     {
         if (\is_null($environment)) {
             $environment = $_ENV;
@@ -96,7 +97,7 @@ class RestClient
         if ($httpClient) {
             $this->httpClient = $httpClient;
         } else {
-            $this->httpClient = new CurlHttpClient();
+            $this->httpClient = new CurlHttpClient($timeout);
         }
     }
 

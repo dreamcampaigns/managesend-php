@@ -11,7 +11,7 @@ class RestClientTest extends TestCase
      */
     public function testThrowsWhenApikeyAndApisecretMissing()
     {
-        new RestClient(NULL, NULL, NULL, NULL, array());
+        new RestClient(NULL, NULL, NULL, NULL, NULL, array());
     }
 
     /**
@@ -19,7 +19,7 @@ class RestClientTest extends TestCase
      */
     public function testThrowsWhenApikeyMissing()
     {
-        new RestClient(NULL, 'apisecret', NULL, NULL, array());
+        new RestClient(NULL, 'apisecret', NULL, NULL, NULL, array());
     }
 
     /**
@@ -27,7 +27,7 @@ class RestClientTest extends TestCase
      */
     public function testThrowsWhenApisecretMissing()
     {
-        new RestClient('apikey', NULL, NULL, NULL, array());
+        new RestClient('apikey', NULL, NULL, NULL, NULL, array());
     }
 
     /**
@@ -41,7 +41,7 @@ class RestClientTest extends TestCase
 
     public function testApikeyPulledFromEnvironment()
     {
-        $restClient = new RestClient(NULL, 'apisecret', NULL, NULL, array(
+        $restClient = new RestClient(NULL, 'apisecret', NULL, NULL, NULL, array(
             RestClient::ENV_TOKEN_KEY => 'apikey',
         ));
         $this->assertEquals('apikey', $restClient->getApiTokenKey());
@@ -49,7 +49,7 @@ class RestClientTest extends TestCase
 
     public function testApisecretPulledFromEnvironment()
     {
-        $restClient = new RestClient('apikey', NULL, NULL, NULL, array(
+        $restClient = new RestClient('apikey', NULL, NULL, NULL, NULL, array(
             RestClient::ENV_TOKEN_SECRET => 'apisecret',
         ));
         $this->assertEquals('apisecret', $restClient->getApiTokenSecret());
@@ -57,7 +57,7 @@ class RestClientTest extends TestCase
 
     public function testApikeyAndApisecretPulledFromEnvironment()
     {
-        $restClient = new RestClient(NULL, NULL, NULL, NULL, array(
+        $restClient = new RestClient(NULL, NULL, NULL, NULL, NULL, array(
             RestClient::ENV_TOKEN_KEY => 'apikey',
             RestClient::ENV_TOKEN_SECRET => 'apisecret',
         ));
@@ -67,7 +67,7 @@ class RestClientTest extends TestCase
 
     public function testApikeyParameterPreferredOverEnvironment()
     {
-        $restClient = new RestClient('apikey', 'apisecret', NULL, NULL, array(
+        $restClient = new RestClient('apikey', 'apisecret', NULL, NULL, NULL, array(
             RestClient::ENV_TOKEN_KEY => 'environmentApisecret',
         ));
         $this->assertEquals('apikey', $restClient->getApiTokenKey());
@@ -75,7 +75,7 @@ class RestClientTest extends TestCase
 
     public function testApisecretParameterPreferredOverEnvironment()
     {
-        $restClient = new RestClient('apikey', 'apisecret', NULL, NULL, array(
+        $restClient = new RestClient('apikey', 'apisecret', NULL, NULL, NULL, array(
             RestClient::ENV_TOKEN_KEY => 'environmentApisecret',
         ));
         $this->assertEquals('apisecret', $restClient->getApiTokenSecret());
@@ -83,7 +83,7 @@ class RestClientTest extends TestCase
 
     public function testApikeyAndApisecretParametersPreferredOverEnvironment()
     {
-        $restClient = new RestClient('apikey', 'apisecret', NULL, NULL, array(
+        $restClient = new RestClient('apikey', 'apisecret', NULL, NULL, NULL, array(
             RestClient::ENV_TOKEN_KEY => 'environmentApikey',
             RestClient::ENV_TOKEN_SECRET => 'environmentApisecret',
         ));
@@ -99,7 +99,7 @@ class RestClientTest extends TestCase
 
     public function testClientidPulledFromEnvironment()
     {
-        $restClient = new RestClient('apikey', 'apisecret', NULL, NULL, array(
+        $restClient = new RestClient('apikey', 'apisecret', NULL, NULL, NULL, array(
             RestClient::ENV_CLIENT_ID => 'clientId',
         ));
         $this->assertEquals('clientId', $restClient->getClientId());
