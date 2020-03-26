@@ -35,16 +35,17 @@ class Template extends AbstractRest
 
     /**
      * @param $templateId
+     * @param $fromEmail
      * @param $toEmail
      * @param $subject
      *
      * @return bool
      * @throws \Managesend\Exceptions\ConfigurationException
      */
-    public function sendTemplatePreview($templateId, $toEmail, $subject)
+    public function sendTemplatePreview($templateId, $fromEmail, $toEmail, $subject)
     {
         $url = $this->getRestUrl("/template/preview/{clientId}/{templateId}", array("{templateId}" => $templateId));
-        $response = $this->get($url, array("toEmail" => $toEmail, "subject" => $subject));
+        $response = $this->get($url, array("fromEmail" => $fromEmail, "toEmail" => $toEmail, "subject" => $subject));
         return $response->getStatusCode() == 200;
     }
 }
