@@ -59,7 +59,7 @@ $apiKey = "ACXXXXXX"; // Your Account/Client API Key from https://login.managese
 $apiSecret = "YXYXYX"; // Your Account/Client API Secret from https://login.managesend.com/myaccount/apikeys
 $clientId = "a6hsgw74dw0001om4yrgfen8";
 
-$restClient = new \Managesend\RestClient\RestClient($apiKey, $apiSecret, $clientId);
+$restClient = new \Managesend\RestClient($apiKey, $apiSecret, $clientId);
 $result = $restClient->transactional()->sendSmartEmail("c5is8tltkk00018k9ype5lg741",array(
     "toEmail"=>"joe@example.com",
     "toName"=>"Joe Smith",
@@ -90,7 +90,7 @@ $apiKey = "ACXXXXXX"; // Your Account API Key from https://login.managesend.com/
 $apiSecret = "YXYXYX"; // Your Account API Secret from https://login.managesend.com/myaccount/apikeys
 
 //if you are using your account level api keys you can set the client ids for each call.
-$restClient = new \Managesend\RestClient\RestClient($apiKey, $apiSecret);
+$restClient = new \Managesend\RestClient($apiKey, $apiSecret);
 $result = $restClient->setClientId("c5is8tltkk00018k9ype5lg741")->transactional()->sendDynamicSms("c5is8tltkk00018k9ype5lg741",array(
     "toNumber"=>"+1234567891",
     "content"=>"Hello Joe, your password has been reset.",
@@ -122,7 +122,7 @@ MANAGESEND_CLIENT_ID=c5is8tltkk00018k9ype5lg741
 ```
 ```php
 <?php
-$restClient = new \Managesend\RestClient\RestClient();
+$restClient = new \Managesend\RestClient();
 $result = $restClient->lists()->getSubscriberList("joe@example.com");
 ```
 ## Examples
