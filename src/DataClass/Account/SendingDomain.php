@@ -25,6 +25,15 @@ class SendingDomain extends AbstractHydrator
     /** @var boolean */
     protected $spfVerified;
 
+    /** @var boolean */
+    protected $blacklisted;
+
+     /** @var array */
+    protected $blacklistSources;
+
+     /** @var string */
+    protected $blacklistDate;
+
     /** @var string */
     protected $modifyDate;
 
@@ -50,6 +59,30 @@ class SendingDomain extends AbstractHydrator
     public function isSpfVerified()
     {
         return $this->spfVerified;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isBlacklisted()
+    {
+        return $this->blacklisted;
+    }
+
+    /**
+     * @return array
+     */
+    public function getBlacklistSources()
+    {
+        return $this->blacklistSources;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBlacklistDate()
+    {
+        return $this->blacklistDate;
     }
 
     /**
