@@ -38,4 +38,15 @@ class Utility extends AbstractRest
         $url = $this->getRestUrl("/utility/timezones");
         return $this->get($url);
     }
+
+    /**
+     * @return boolean
+     * @throws \Managesend\Exceptions\ConfigurationException
+     */
+    public function testConnection()
+    {
+        $url = $this->getRestUrl("/utility/testconnection");
+        $response = $this->get($url);
+        return $response->getStatusCode() == 200;
+    }
 }
