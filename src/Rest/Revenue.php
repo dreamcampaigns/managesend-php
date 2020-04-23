@@ -21,6 +21,17 @@ class Revenue extends AbstractRest
     }
 
     /**
+     * @return \Managesend\DataResponse\Revenue\RevenueResponse
+     * @throws \Managesend\Exceptions\ConfigurationException
+     */
+    public function getRevenueDetails($revenueId)
+    {
+        $url = $this->getRestUrl("/revenue/detail/{revenueId}", array("{revenueId}" => $revenueId));
+        $response = $this->get($url);
+        return new \Managesend\DataResponse\Revenue\RevenueResponse($response);
+    }
+
+    /**
      * @param $revenueId
      * @param array $param
      *

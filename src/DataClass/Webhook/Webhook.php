@@ -19,7 +19,7 @@ class Webhook extends AbstractHydrator
     protected $webhookId;
 
     /** @var string */
-    protected $events;
+    protected $event;
 
     /** @var string */
     protected $url;
@@ -41,19 +41,9 @@ class Webhook extends AbstractHydrator
     /**
      * @return string
      */
-    public function getEvents()
+    public function getEvent()
     {
-        return $this->events;
-    }
-
-    /**
-     * @param string $event
-     *
-     * @return bool
-     */
-    public function hasEvent($event)
-    {
-        return \in_array($event,$this->events);
+        return $this->event;
     }
 
     /**
