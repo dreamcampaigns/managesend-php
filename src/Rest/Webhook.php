@@ -17,7 +17,7 @@ class Webhook extends AbstractRest
      */
     public function getWebhooks($listId)
     {
-        $url = $this->getRestUrl("/lists/webhooks/{clientId}/{listId}", array("{listId}" => $listId));
+        $url = $this->getRestUrl("/webhooks/{clientId}/{listId}", array("{listId}" => $listId));
         $response = $this->get($url);
         return new \Managesend\DataResponse\Webhook\WebhooksResponse($response);
     }
@@ -25,7 +25,7 @@ class Webhook extends AbstractRest
     /**
      * @param $listId
      * @param array $data = [
-     *  'events' => 'array',
+     *  'event' => 'string',
      *  'url' => 'string',
      *  'active' => 'true|false',
      * ]
@@ -35,7 +35,7 @@ class Webhook extends AbstractRest
      */
     public function createWebhook($listId,array $data)
     {
-        $url = $this->getRestUrl("/lists/webhook/create/{clientId}/{listId}", array("{listId}" => $listId));
+        $url = $this->getRestUrl("/webhook/create/{clientId}/{listId}", array("{listId}" => $listId));
         $response = $this->post($url,array(),$data);
         return new \Managesend\DataResponse\Webhook\WebhookResponse($response);
     }
@@ -48,7 +48,7 @@ class Webhook extends AbstractRest
      */
     public function activateWebhook($webhookId)
     {
-        $url = $this->getRestUrl("/lists/webhook/activate/{clientId}/{webhookId}", array("{webhookId}"=> $webhookId));
+        $url = $this->getRestUrl("/webhook/activate/{clientId}/{webhookId}", array("{webhookId}"=> $webhookId));
         $response = $this->patch($url);
         return new \Managesend\DataResponse\Webhook\WebhookResponse($response);
     }
@@ -61,7 +61,7 @@ class Webhook extends AbstractRest
      */
     public function deactivateWebhook($webhookId)
     {
-        $url = $this->getRestUrl("/lists/webhook/deactivate/{clientId}/{webhookId}", array("{webhookId}"=> $webhookId));
+        $url = $this->getRestUrl("/webhook/deactivate/{clientId}/{webhookId}", array("{webhookId}"=> $webhookId));
         $response = $this->patch($url);
         return new \Managesend\DataResponse\Webhook\WebhookResponse($response);
     }
@@ -74,7 +74,7 @@ class Webhook extends AbstractRest
      */
     public function deleteWebhook($webhookId)
     {
-        $url = $this->getRestUrl("/lists/webhook/delete/{clientId}/{webhookId}", array("{webhookId}"=> $webhookId));
+        $url = $this->getRestUrl("/webhook/delete/{clientId}/{webhookId}", array("{webhookId}"=> $webhookId));
         return $this->delete($url);
     }
 
@@ -86,7 +86,7 @@ class Webhook extends AbstractRest
      */
     public function testWebhook($webhookId)
     {
-        $url = $this->getRestUrl("/lists/webhook/test/{clientId}/{webhookId}", array("{webhookId}"=> $webhookId));
+        $url = $this->getRestUrl("/webhook/test/{clientId}/{webhookId}", array("{webhookId}"=> $webhookId));
         $response = $this->get($url);
         return $response->getStatusCode() == 200;
     }

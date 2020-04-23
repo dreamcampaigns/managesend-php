@@ -40,6 +40,9 @@ class SiteMessage extends AbstractHydrator
     protected $leaveIntent;
 
     /** @var boolean */
+    protected $aggressive;
+
+    /** @var boolean */
     protected $useTheme;
 
     /** @var string */
@@ -116,6 +119,14 @@ class SiteMessage extends AbstractHydrator
     public function isLeaveIntent()
     {
         return $this->leaveIntent;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAggressive()
+    {
+        return $this->aggressive;
     }
 
     /**
