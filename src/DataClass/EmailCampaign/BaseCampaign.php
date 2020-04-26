@@ -16,10 +16,10 @@ use Managesend\Hydrator\AbstractHydrator;
 class BaseCampaign extends AbstractHydrator
 {
     /** @var integer */
-    protected $campaignId;
+    protected $id;
 
     /** @var string */
-    protected $campaignName;
+    protected $name;
 
     /** @var string */
     protected $fromName;
@@ -48,17 +48,17 @@ class BaseCampaign extends AbstractHydrator
     /**
      * @return int
      */
-    public function getCampaignId()
+    public function getId()
     {
-        return $this->campaignId;
+        return $this->id;
     }
 
     /**
      * @return string
      */
-    public function getCampaignName()
+    public function getName()
     {
-        return $this->campaignName;
+        return $this->name;
     }
 
     /**

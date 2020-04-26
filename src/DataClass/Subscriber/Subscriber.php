@@ -178,7 +178,10 @@ class Subscriber extends AbstractHydrator
      */
     public function getCustomFieldValue($customField)
     {
-        return \array_key_exists($customField, $this->customFields) ? $this->customFields[$customField] : NULL;
+        if($this->hasCustomField($customField)){
+            return $this->customFields[$customField];
+        }
+        return NULL;
     }
 
     /**

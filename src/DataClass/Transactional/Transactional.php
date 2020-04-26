@@ -16,7 +16,7 @@ use Managesend\Hydrator\AbstractHydrator;
 class Transactional extends AbstractHydrator
 {
     /** @var string */
-    protected $transactionalId;
+    protected $id;
 
     /** @var string */
     protected $type;
@@ -30,9 +30,9 @@ class Transactional extends AbstractHydrator
     /**
      * @return string
      */
-    public function getTransactionalId()
+    public function getId()
     {
-        return $this->transactionalId;
+        return $this->id;
     }
 
     /**

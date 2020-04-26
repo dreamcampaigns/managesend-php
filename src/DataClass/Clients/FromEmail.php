@@ -17,7 +17,7 @@ use Managesend\Hydrator\AbstractHydrator;
 class FromEmail extends AbstractHydrator
 {
     /** @var string */
-    protected $emailId;
+    protected $id;
 
     /** @var string */
     protected $email;
@@ -28,9 +28,9 @@ class FromEmail extends AbstractHydrator
     /**
      * @return string
      */
-    public function getEmailId()
+    public function getId()
     {
-        return $this->emailId;
+        return $this->id;
     }
 
     /**

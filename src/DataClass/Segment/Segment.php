@@ -16,7 +16,7 @@ use Managesend\Hydrator\AbstractHydrator;
 class Segment extends AbstractHydrator
 {
     /** @var integer */
-    protected $segmentId;
+    protected $id;
 
     /** @var integer */
     protected $listId;
@@ -36,9 +36,9 @@ class Segment extends AbstractHydrator
     /**
      * @return int
      */
-    public function getSegmentId()
+    public function getId()
     {
-        return $this->segmentId;
+        return $this->id;
     }
 
     /**

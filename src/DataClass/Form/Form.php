@@ -16,7 +16,7 @@ use Managesend\Hydrator\AbstractHydrator;
 class Form extends AbstractHydrator
 {
     /** @var string */
-    protected $formId;
+    protected $id;
 
     /** @var string */
     protected $name;
@@ -69,9 +69,9 @@ class Form extends AbstractHydrator
     /**
      * @return string
      */
-    public function getFormId()
+    public function getId()
     {
-        return $this->formId;
+        return $this->id;
     }
 
     /**

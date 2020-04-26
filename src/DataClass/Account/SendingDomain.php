@@ -16,6 +16,9 @@ use Managesend\Hydrator\AbstractHydrator;
  */
 class SendingDomain extends AbstractHydrator
 {
+     /** @var string */
+    protected $id;
+
     /** @var string */
     protected $domain;
 
@@ -36,6 +39,14 @@ class SendingDomain extends AbstractHydrator
 
     /** @var string */
     protected $modifyDate;
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @return string

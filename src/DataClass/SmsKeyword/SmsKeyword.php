@@ -16,7 +16,7 @@ use Managesend\Hydrator\AbstractHydrator;
 class SmsKeyword extends AbstractHydrator
 {
     /** @var string */
-    protected $keywordId;
+    protected $id;
 
     /** @var string */
     protected $keyword;
@@ -45,9 +45,9 @@ class SmsKeyword extends AbstractHydrator
     /**
      * @return string
      */
-    public function getKeywordId()
+    public function getId()
     {
-        return $this->keywordId;
+        return $this->id;
     }
 
     /**

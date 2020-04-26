@@ -16,7 +16,7 @@ use Managesend\Hydrator\AbstractHydrator;
 class Webhook extends AbstractHydrator
 {
     /** @var string */
-    protected $webhookId;
+    protected $id;
 
     /** @var string */
     protected $event;
@@ -33,9 +33,9 @@ class Webhook extends AbstractHydrator
     /**
      * @return string
      */
-    public function getWebhookId()
+    public function getId()
     {
-        return $this->webhookId;
+        return $this->id;
     }
 
     /**

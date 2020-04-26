@@ -16,10 +16,10 @@ use Managesend\Hydrator\AbstractHydrator;
 class Journey extends AbstractHydrator
 {
     /** @var integer */
-    protected $journeyId;
+    protected $id;
 
     /** @var string */
-    protected $journeyName;
+    protected $name;
 
     /** @var string */
     protected $triggerType;
@@ -33,17 +33,17 @@ class Journey extends AbstractHydrator
     /**
      * @return int
      */
-    public function getJourneyId()
+    public function getId()
     {
-        return $this->journeyId;
+        return $this->id;
     }
 
     /**
      * @return string
      */
-    public function getJourneyName()
+    public function getName()
     {
-        return $this->journeyName;
+        return $this->name;
     }
 
     /**
