@@ -16,7 +16,7 @@ use Managesend\Hydrator\AbstractHydrator;
 class SiteMessage extends AbstractHydrator
 {
     /** @var integer */
-    protected $sitemessageId;
+    protected $id;
 
     /** @var integer */
     protected $listId;
@@ -60,9 +60,9 @@ class SiteMessage extends AbstractHydrator
     /**
      * @return int
      */
-    public function getSitemessageId()
+    public function getId()
     {
-        return $this->sitemessageId;
+        return $this->id;
     }
 
     /**

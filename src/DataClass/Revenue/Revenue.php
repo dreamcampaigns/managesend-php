@@ -16,7 +16,7 @@ use Managesend\Hydrator\AbstractHydrator;
 class Revenue extends AbstractHydrator
 {
     /** @var string */
-    protected $revenueId;
+    protected $id;
 
     /** @var string */
     protected $name;
@@ -36,9 +36,9 @@ class Revenue extends AbstractHydrator
     /**
      * @return string
      */
-    public function getRevenueId()
+    public function getId()
     {
-        return $this->revenueId;
+        return $this->id;
     }
 
     /**

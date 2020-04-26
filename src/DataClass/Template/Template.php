@@ -16,10 +16,10 @@ use Managesend\Hydrator\AbstractHydrator;
 class Template extends AbstractHydrator
 {
     /** @var int */
-    protected $templateId;
+    protected $id;
 
     /** @var string */
-    protected $templateName;
+    protected $name;
 
     /** @var boolean */
     protected $transactional;
@@ -36,17 +36,17 @@ class Template extends AbstractHydrator
     /**
      * @return int
      */
-    public function getTemplateId()
+    public function getId()
     {
-        return $this->templateId;
+        return $this->id;
     }
 
     /**
      * @return string
      */
-    public function getTemplateName()
+    public function getName()
     {
-        return $this->templateName;
+        return $this->name;
     }
 
     /**

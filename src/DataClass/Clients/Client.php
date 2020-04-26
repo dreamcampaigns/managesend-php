@@ -17,7 +17,7 @@ use Managesend\Hydrator\AbstractHydrator;
 class Client extends AbstractHydrator
 {
     /** @var string */
-    protected $clientId;
+    protected $id;
 
     /** @var string */
     protected $name;
@@ -55,9 +55,9 @@ class Client extends AbstractHydrator
     /**
      * @return string
      */
-    public function getClientId()
+    public function getId()
     {
-        return $this->clientId;
+        return $this->id;
     }
 
     /**

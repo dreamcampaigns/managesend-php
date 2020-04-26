@@ -16,7 +16,7 @@ use Managesend\Hydrator\AbstractHydrator;
 class Message extends AbstractHydrator
 {
     /** @var string */
-    protected $messageId;
+    protected $id;
 
     /** @var string */
     protected $type;
@@ -48,9 +48,9 @@ class Message extends AbstractHydrator
     /**
      * @return string
      */
-    public function getMessageId()
+    public function getId()
     {
-        return $this->messageId;
+        return $this->id;
     }
 
     /**
