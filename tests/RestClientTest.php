@@ -6,37 +6,45 @@ use PHPUnit\Framework\TestCase;
 
 class RestClientTest extends TestCase
 {
-    /**
-     * @expectedException \Managesend\Exceptions\ConfigurationException
-     */
     public function testThrowsWhenApikeyAndApisecretMissing()
     {
-        new RestClient(NULL, NULL, NULL, NULL, NULL, array());
+        try {
+            new RestClient(NULL, NULL, NULL, NULL, NULL, array());
+            $this->assertFalse(true);
+        } catch (\Managesend\Exceptions\ConfigurationException $e) {
+            $this->assertTrue(true);
+        }
     }
 
-    /**
-     * @expectedException \Managesend\Exceptions\ConfigurationException
-     */
     public function testThrowsWhenApikeyMissing()
     {
-        new RestClient(NULL, 'apisecret', NULL, NULL, NULL, array());
+        try {
+            new RestClient(NULL, 'apisecret', NULL, NULL, NULL, array());
+            $this->assertFalse(TRUE);
+        } catch (\Managesend\Exceptions\ConfigurationException $e) {
+            $this->assertTrue(TRUE);
+        }
     }
 
-    /**
-     * @expectedException \Managesend\Exceptions\ConfigurationException
-     */
     public function testThrowsWhenApisecretMissing()
     {
-        new RestClient('apikey', NULL, NULL, NULL, NULL, array());
+        try {
+            new RestClient('apikey', NULL, NULL, NULL, NULL, array());
+            $this->assertFalse(TRUE);
+        } catch (\Managesend\Exceptions\ConfigurationException $e) {
+            $this->assertTrue(TRUE);
+        }
     }
 
-    /**
-     * @expectedException \Managesend\Exceptions\ConfigurationException
-     */
     public function testThrowsWhenClientidMissing()
     {
-        $restClient = new RestClient('apikey', 'apisecret');
-        $restClient->emailCampaign()->getCampaignSummary(1);
+        try {
+            $restClient = new RestClient('apikey', 'apisecret');
+            $restClient->emailCampaign()->getCampaignSummary(1);
+            $this->assertFalse(TRUE);
+        } catch (\Managesend\Exceptions\ConfigurationException $e) {
+            $this->assertTrue(TRUE);
+        }
     }
 
     public function testApikeyPulledFromEnvironment()
@@ -111,13 +119,15 @@ class RestClientTest extends TestCase
         $restClient->setClientId('clientId2');
         $this->assertEquals('clientId2', $restClient->getClientId());
     }
-
-    /**
-     * @expectedException \Managesend\Exceptions\RestException
-     */
+    
     public function testFailedRestcall()
     {
-        $restClient = new RestClient('apikey', 'apisecret','clientId');
-        $response = $restClient->clients()->getClients();
+        try {
+            $restClient = new RestClient('apikey', 'apisecret','clientId');
+            $response = $restClient->clients()->getClients();
+            $this->assertFalse(TRUE);
+        } catch (\Managesend\Exceptions\RestException $e) {
+            $this->assertTrue(TRUE);
+        }
     }
 }
