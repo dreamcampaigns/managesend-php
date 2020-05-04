@@ -39,8 +39,8 @@ class SiteMessage extends AbstractHydrator
     /** @var boolean */
     protected $leaveIntent;
 
-    /** @var boolean */
-    protected $aggressive;
+    /** @var string */
+    protected $frequency;
 
     /** @var boolean */
     protected $useTheme;
@@ -122,11 +122,19 @@ class SiteMessage extends AbstractHydrator
     }
 
     /**
+     * @return string
+     */
+    public function getFrequency()
+    {
+        return $this->frequency;
+    }
+
+    /**
      * @return bool
      */
     public function isAggressive()
     {
-        return $this->aggressive;
+        return $this->frequency == "aggressive";
     }
 
     /**
