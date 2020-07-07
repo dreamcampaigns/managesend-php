@@ -16,7 +16,7 @@ jobs:
 # lock distro so new future defaults will not break the build
 dist: trusty
 
-install: composer install --prefer-source
+install: composer update --prefer-dist --no-interaction
 
 script: ./vendor/bin/phpunit --coverage-text
 
