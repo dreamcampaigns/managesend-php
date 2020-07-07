@@ -1,7 +1,7 @@
 {
     "name": "dreamcampaigns/managesend-php",
-    "description": "A php library which implements the complete functionality of the Dream Campaigns API.",
-    "keywords": ["dream", "campaign", "api"],
+    "description": "A php library which implements the complete functionality of the DreamCampaigns API.",
+    "keywords": ["dreamcampaigns","dream", "campaign", "api","email","sms"],
     "homepage": "https://api.managesend.com/",
     "type": "library",
     "license": "MIT",

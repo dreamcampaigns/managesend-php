@@ -1,7 +1,7 @@
 # managesend-php
 
 ![Travis (.org)](https://img.shields.io/travis/dreamcampaigns/managesend-php)
-![Packagist](https://img.shields.io/packagist/l/dreamcampaigns/managesend-php)
+![Packagist](https://img.shields.io/packagist/l/dreamcampaigns/managesend-php) 
 ![Packagist Version](https://img.shields.io/packagist/v/dreamcampaigns/managesend-php)
 ![Packagist](https://img.shields.io/packagist/dt/dreamcampaigns/managesend-php)
 

@@ -12,7 +12,6 @@ jobs:
     - php: 7.2
     - php: 7.3
     - php: 7.4
-    - php: hhvm
 
 # lock distro so new future defaults will not break the build
 dist: trusty
@@ -20,7 +19,7 @@ sudo: false
 install: composer update --no-interaction
 
 script:
-  - vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+  - vendor/bin/phpunit --coverage-text
 
 notifications:
   email: false
