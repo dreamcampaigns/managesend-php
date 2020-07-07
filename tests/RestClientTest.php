@@ -47,17 +47,6 @@ class RestClientTest extends TestCase
         }
     }
 
-    public function testThrowsFailedRestcall()
-    {
-        try {
-            $restClient = new RestClient('apikey', 'apisecret','clientId');
-            $response = $restClient->clients()->getClients();
-            $this->assertFalse(TRUE);
-        } catch (\Managesend\Exceptions\RestException $e) {
-            $this->assertTrue(TRUE);
-        }
-    }
-
     public function testApikeyPulledFromEnvironment()
     {
         $restClient = new RestClient(NULL, 'apisecret', NULL, NULL, NULL, array(
