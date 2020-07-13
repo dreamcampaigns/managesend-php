@@ -16,10 +16,13 @@ use Managesend\Hydrator\AbstractHydrator;
 class Lists extends AbstractHydrator
 {
     /** @var integer */
-    protected $listId;
+    protected $id;
 
     /** @var string */
     protected $listName;
+
+    /** @var int */
+    protected $subscriberCount;
 
     /** @var string */
     protected $createDate;
@@ -27,9 +30,9 @@ class Lists extends AbstractHydrator
     /**
      * @return int
      */
-    public function getListId()
+    public function getId()
     {
-        return $this->listId;
+        return $this->id;
     }
 
     /**
@@ -38,6 +41,14 @@ class Lists extends AbstractHydrator
     public function getListName()
     {
         return $this->listName;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSubscriberCount()
+    {
+        return $this->subscriberCount;
     }
 
     /**
