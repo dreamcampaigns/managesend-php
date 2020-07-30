@@ -40,13 +40,13 @@ class Utility extends AbstractRest
     }
 
     /**
-     * @return boolean
+     * @return \Managesend\DataResponse\Utility\TestConnectionResponse
      * @throws \Managesend\Exceptions\ConfigurationException
      */
     public function testConnection()
     {
         $url = $this->getRestUrl("/utility/testconnection");
         $response = $this->get($url);
-        return $response->getStatusCode() == 200;
+        return new \Managesend\DataResponse\Utility\TestConnectionResponse($response);
     }
 }
